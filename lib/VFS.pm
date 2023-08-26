@@ -36,7 +36,7 @@ Replace all Perl IO (C<readdir>, C<open>, etc) with the virtual FS:
 
 =head1 FEATURES
 
-There are L</SEE ALSO|other virtual filesystem modules on CPAN>, but this one features:
+There are L<other virtual filesystem modules on CPAN|/SEE ALSO>, but this one features:
 
 =over
 
@@ -118,25 +118,25 @@ for maximum compatibility.  Files hold a strong reference to the originating fil
 
 =head1 EXPORTS
 
-All L</functions> may be exported.  The following additional features can be requested from the
-C<< use VFS ... >> line:
+All L<functions|/FUNCTIONS> may be exported.  The following additional features can be
+requested from the C<< use VFS ... >> line:
 
 =over
 
 =item C<< -config => $filename_or_data >>
 
-This is a shorthand to calling L</VFS::configure> at module-load time.
+This is a shorthand to calling L<VFS::configure|/configure> at module-load time.
 
 =item C<< /conf >>, C<< ./conf >>, C<< ~/conf >>, C<< C:\conf >>
 
-Any option starting with C<<qr{ [^.~] / }x>> (or C<<qr{ (?: [A-Z] : )? \\ }x>> on Win32) will
-automatically be treated as the filename for the C<-config> option.
+Any option starting with C<< qr{ [^.~] / }x >> or, on Win32, C<< qr{ (?: [A-Z] : )? \\ }x >>
+will automatically be treated as the filename for the C<-config> option.
 
 =item C<< -override_core >>
 
 This requests VFS to intercept all CORE:: filesystem functions and make them read and write
 through the configured virtual filesystem.  This is only possible very early in startup before
-other modules have been loaded.
+other modules have been loaded.  Also, it won't affect C-library functions.
 
 =back
 
@@ -424,10 +424,10 @@ mounted filesystem.
 
 =item L<VFSsimple>
 
-Very sparse API, and last updated 2007.
+Very sparse API (insufficient for most uses), and last updated 2007.
 
-CPAN has implementations for ISO, FTP, HTTP, and "rsync" (which just uses rsync to clone a
-remote file system locally)
+CPAN has implementations for ISO, FTP, HTTP, and "rsync" (which just shells out to rsync to
+clone a remote file system locally)
 
 =item L<File::Redirect>
 
